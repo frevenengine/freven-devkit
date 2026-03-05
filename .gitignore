@@ -1,0 +1,6 @@
+# No binaries in git
+*.zip
+*.tar.gz
+*.sha256
+/dist/
+_artifacts/

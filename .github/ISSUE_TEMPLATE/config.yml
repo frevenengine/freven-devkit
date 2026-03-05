@@ -1,0 +1,6 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/frevenengine/freven-devkit/tree/main/docs
+    about: Read the docs before reporting issues.
+    

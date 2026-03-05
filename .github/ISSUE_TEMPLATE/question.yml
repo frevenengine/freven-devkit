@@ -1,0 +1,20 @@
+name: Question
+description: Ask a question about using the DevKit
+title: "[Question] "
+labels: ["question"]
+body:
+  - type: textarea
+    id: q
+    attributes:
+      label: Question
+      description: Ask away. Include context (OS, commands run).
+    validations:
+      required: true
+
+  - type: textarea
+    id: version
+    attributes:
+      label: freven_boot --version (recommended)
+      render: text
+    validations:
+      required: false

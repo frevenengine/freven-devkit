@@ -1,0 +1,65 @@
+name: Bug Report
+description: Report a reproducible problem with the DevKit distribution or runtime
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please include the required info so we can reproduce quickly.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened? What did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Exact commands and steps.
+      placeholder: |
+        1) Extract DevKit vX.Y.Z
+        2) ./freven_boot init --instance instances/sp client
+        3) ./freven_boot play --instance instances/sp -- --username test --devtools
+        4) ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: version
+    attributes:
+      label: Required: freven_boot --version output
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs and artifacts
+      description: Attach or paste relevant logs and optionally load_plan JSON.
+      placeholder: |
+        - instances/<...>/logs/...
+        - instances/<...>/run/load_plan_*.json
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      placeholder: "Linux (distro), Windows version, macOS version"
+    validations:
+      required: true
+
+  - type: input
+    id: gpu
+    attributes:
+      label: GPU / Driver (if relevant)
+      placeholder: "NVIDIA 3070, driver 5xx.xx"
+    validations:
+      required: false
