@@ -91,8 +91,13 @@ Important:
 
 ## Writing mods / creating experiences
 
-* Mods and experiences are defined by the stable SDK contracts in **freven-sdk**.
-* Vanilla is the reference experience and uses only the public SDK surface.
+* Neutral platform-shaped authoring uses `freven_mod_api`, `freven_guest_sdk`,
+  and `freven_sdk_types` from **freven-sdk**.
+* Current gameplay/world-stack authoring uses the explicit world-owned
+  `freven_world_api`, `freven_world_guest_sdk`, and `freven_world_sdk_types`
+  surfaces from **freven-sdk**.
+* Vanilla is the first-party reference experience for that explicit world-owned
+  path.
 
 See:
 
