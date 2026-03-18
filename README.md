@@ -88,16 +88,22 @@ Important:
 
 * The DevKit **archive is read-only**. You can delete and re-extract it anytime.
 * Your instances are safe to keep between updates.
+* Dedicated server `server.toml` keeps world-stack runtime inputs under
+  `[world_bootstrap]` and `[world_streaming]`. On first boot, the server opens
+  or creates `<instance>/worlds/<world_id>/`, writes `world.toml`, and binds
+  that save to the resolved experience.
 
 ## Writing mods / creating experiences
 
 * Neutral platform-shaped authoring uses `freven_mod_api`, `freven_guest_sdk`,
   and `freven_sdk_types` from **freven-sdk**.
-* Current gameplay/world-stack authoring uses the explicit world-owned
+* Current gameplay/world-stack authoring uses the explicit
   `freven_world_api`, `freven_world_guest_sdk`, and `freven_world_sdk_types`
-  surfaces from **freven-sdk**.
-* Vanilla is the first-party reference experience for that explicit world-owned
-  path.
+  surfaces from **freven-sdk** for block/content registration, world
+  queries/mutations, terrain-write worldgen, and world runtime services.
+* Vanilla is the first-party reference experience above that world stack. It
+  owns first-party gameplay policy such as flat worldgen, humanoid controls,
+  break/place ids, and nameplate presentation.
 
 See:
 

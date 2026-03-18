@@ -55,8 +55,9 @@ Tip:
 
 * `init` is safe by default: it **creates missing files** and does not overwrite existing ones.
 * Use `--force` only if you really want to overwrite template files.
-* Dedicated server instances now carry explicit world-owned config sections in
-  `server.toml`: `[world_bootstrap]` and `[world_streaming]`.
+* Dedicated server instances now carry explicit world-stack config sections in
+  `server.toml`: `[world_bootstrap]` selects the world save to open/create and
+  `[world_streaming]` sets join/view/budget policy for world streaming.
 
 ## 4) Run dedicated server + connect a client
 
@@ -95,9 +96,10 @@ Current authoring ownership:
 
 * use `freven_guest_sdk` / `freven_mod_api` only for neutral platform-shaped
   declarations
-* use `freven_world_guest_sdk` / `freven_world_api` for gameplay, blocks,
-  actions, providers, and other current world-stack behavior
-* use `freven-vanilla` as the first-party reference for the world-owned path
+* use `freven_world_guest_sdk` / `freven_world_api` for gameplay, block/content
+  registration, world queries/mutations, terrain-write worldgen, providers,
+  and other current world-stack behavior
+* use `freven-vanilla` as the first-party reference above that world stack
 
 ## 6) Useful flags
 
