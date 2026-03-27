@@ -1,0 +1,92 @@
+name: Architecture Proposal
+description: Propose a long-term structural, ownership, contract, or system-design change
+title: "[Architecture] "
+labels: ["type:architecture", "status:triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for long-term structural / contract / ownership / boundary discussions.
+        This is not for bug reports or routine feature requests.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Short description of the architectural topic or proposed direction.
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / Motivation
+      description: What architectural problem or long-term constraint are we trying to address?
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_state
+    attributes:
+      label: Current state
+      description: How does the system behave today? What is already true or already implemented?
+      placeholder: |
+        - current ownership / boundary shape
+        - current product/runtime behavior
+        - current limitations or leaks
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed direction
+      description: What direction or model do you think Freven should adopt?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What alternatives were considered, and why are they worse / incomplete / riskier?
+    validations:
+      required: false
+
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Ownership / boundary impact
+      description: What ownership lines, contracts, or subsystem boundaries would this affect?
+      placeholder: |
+        - core vs shell
+        - runtime vs packaging
+        - client vs server authority
+        - SDK vs engine
+        - builtin vs guest
+    validations:
+      required: false
+
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Non-goals
+      description: What is explicitly out of scope for this issue?
+    validations:
+      required: false
+
+  - type: textarea
+    id: open_questions
+    attributes:
+      label: Open questions
+      description: What still needs discussion before the direction can be frozen?
+    validations:
+      required: false
+
+  - type: textarea
+    id: follow_up
+    attributes:
+      label: Expected follow-up work
+      description: If this direction is accepted, what kind of follow-up docs / implementation issues would likely be needed?
+    validations:
+      required: false
