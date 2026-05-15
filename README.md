@@ -101,6 +101,8 @@ Important:
   `freven_world_api`, `freven_world_guest_sdk`, and `freven_world_sdk_types`
   surfaces from **freven-sdk** for block/content registration, world
   queries/mutations, terrain-write worldgen, and world runtime services.
+* A from-scratch runtime-loaded Wasm mod walkthrough is documented in
+  [`docs/FIRST_WASM_MOD.md`](docs/FIRST_WASM_MOD.md).
 * Simulation-style runtime block mutation authoring is documented in
   [`docs/BLOCK_MUTATION_AUTHORING.md`](docs/BLOCK_MUTATION_AUTHORING.md).
 * Vanilla is the first-party reference experience above that world stack. It
@@ -132,6 +134,7 @@ Include:
 ## Authoring references
 
 - [Getting started](docs/GETTING_STARTED.md)
+- [First Wasm mod](docs/FIRST_WASM_MOD.md)
 - [Provider selection authoring](docs/PROVIDER_AUTHORING.md)
 - [Block mutation authoring](docs/BLOCK_MUTATION_AUTHORING.md)
 - [Troubleshooting](docs/TROUBLESHOOTING.md)
