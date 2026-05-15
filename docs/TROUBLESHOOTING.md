@@ -41,3 +41,19 @@ If the client refuses to connect due to certificate/trust changes:
 - safest: `--quic-forget <host:port>` then reconnect
 - or reset trust store: `--quic-reset-trust`
 - `--quic-accept-new-cert` should be used carefully (a changed cert can be a MITM or server reinstall)
+
+## Provider default does not resolve
+
+If launch or validation reports a missing worldgen, character controller, or
+client control provider, inspect the resolved provider catalog:
+
+~~~bash
+./freven_boot providers explain --instance <instance> --experience <experience_id>
+~~~
+
+Then check that the selected key in `[defaults]` or `[layers.defaults]` exactly
+matches a provider registered by an active mod. Provider default validation is
+side-aware: server validates `worldgen` and `character_controller`, while client
+validates `character_controller` and `client_control_provider`.
+
+See [Provider selection authoring](PROVIDER_AUTHORING.md).

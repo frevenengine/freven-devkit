@@ -112,3 +112,20 @@ Current authoring ownership:
   * `--quic-forget <host:port>`
   * `--quic-reset-trust`
   * `--quic-accept-new-cert` (use with care)
+
+## Check provider selection
+
+Experiences can explicitly select worldgen, character controller, and client
+control provider keys. Before launching an authored experience, inspect and
+validate those provider defaults:
+
+~~~bash
+./freven_boot providers list --instance instances/player --experience <experience_id>
+./freven_boot providers check --instance instances/player --experience <experience_id>
+./freven_boot providers explain --instance instances/player --experience <experience_id>
+~~~
+
+On Windows, use `freven_boot.exe` with the same `providers` subcommands.
+
+See [Provider selection authoring](PROVIDER_AUTHORING.md) for the full provider
+key contract and side-aware validation rules.
