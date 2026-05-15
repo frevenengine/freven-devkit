@@ -52,8 +52,11 @@ client control provider, inspect the resolved provider catalog:
 ~~~
 
 Then check that the selected key in `[defaults]` or `[layers.defaults]` exactly
-matches a provider registered by an active mod. Provider default validation is
-side-aware: server validates `worldgen` and `character_controller`, while client
-validates `character_controller` and `client_control_provider`.
+matches a provider registered by an active mod. For stack experiences, mods added
+by the overlay must be listed under `[[layers.mods]]`; top-level `[[mods]]` is
+the standalone `experience.toml` shape, not the stack overlay shape. Provider
+default validation is side-aware: server validates `worldgen` and
+`character_controller`, while client validates `character_controller` and
+`client_control_provider`.
 
 See [Provider selection authoring](PROVIDER_AUTHORING.md).

@@ -42,9 +42,9 @@ id = "example.experience"
 version = "1.0.0"
 title = "Example Experience"
 
-mods = [
-  "example.providers",
-]
+[[mods]]
+id = "example.providers"
+version = "^1.0"
 
 [defaults]
 worldgen = "example.providers:flat"
@@ -69,12 +69,84 @@ title = "Provider Override"
 worldgen = "example.providers:flat"
 character_controller = "example.providers:humanoid"
 client_control_provider = "example.providers:controls"
+
+[[layers.mods]]
+id = "example.providers"
+version = "^1.0"
 ~~~
+
+If the selected provider comes from a mod already inherited from the base
+experience, the stack layer only needs `[layers.defaults]`. If the selected
+provider comes from a runtime-loaded mod added by the stack, add that mod under
+`[[layers.mods]]` in the same layer.
+
+Do not put top-level `[defaults]`, top-level `[[mods]]`, top-level `[config]`,
+top-level `[content]`, or top-level `[requirements]` in
+`experience.stack.toml`. Those are standalone `experience.toml` fields. Stack
+overlays use `[[layers]]` with `[layers.defaults]`, `[[layers.mods]]`,
+`[layers.config."<mod_id>"]`, and optional `[layers.content]`.
 
 Use explicit defaults for production experiences. Implicit fallback still selects
 the first registered provider in that family, but explicit keys are the stable
 long-term contract: they survive provider registration order changes and fail
 honestly when a provider was removed, renamed, or not loaded.
+
+## Combining multiple provider mods in a stack
+
+A stack can combine providers from the base experience and from one or more
+runtime-loaded mods added by the overlay layer.
+
+Example: keep `freven.vanilla` as the base, add one Wasm worldgen mod, and add a
+second Wasm mod that owns movement/control providers:
+
+~~~toml
+schema = 1
+id = "example.vanilla.terrain_flight"
+version = "0.1.0"
+title = "Vanilla + Custom Terrain + Flight"
+base = "freven.vanilla"
+
+[[layers]]
+id = "example.vanilla.terrain_flight.layer"
+version = "0.1.0"
+title = "Terrain + Flight Providers"
+
+[layers.defaults]
+worldgen = "example.terrain:terrain"
+character_controller = "example.flight:controller"
+client_control_provider = "example.flight:controls"
+
+[[layers.mods]]
+id = "example.terrain"
+version = "^0.1"
+
+[[layers.mods]]
+id = "example.flight"
+version = "^0.1"
+~~~
+
+In this shape:
+
+- `example.terrain` and `example.flight` are active because they are listed under
+  `[[layers.mods]]`;
+- the selected provider keys are active because they are selected under
+  `[layers.defaults]`;
+- the base experience remains the owner of inherited content, requirements, and
+  any inherited mod refs;
+- a root-level `[[mods]]` entry in `experience.stack.toml` is not the stack
+  overlay contract.
+
+After editing the stack, run:
+
+~~~bash
+./freven_boot providers explain --instance <instance> --experience example.vanilla.terrain_flight
+./freven_boot providers check --instance <instance> --experience example.vanilla.terrain_flight
+~~~
+
+`providers explain` shows which defaults are selected and which loaded mod owns
+each provider key. `providers check` fails before launch when a selected provider
+default does not resolve for the hosted side.
+
 
 ## Inspecting provider catalogs
 
