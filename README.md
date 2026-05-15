@@ -128,3 +128,10 @@ Include:
 
 * This repository (docs/templates) is under **MIT** (see `LICENSE`).
 * DevKit binaries/content are covered by `LICENSE-DEVKIT.txt` (distributed with the release).
+
+## Authoring references
+
+- [Getting started](docs/GETTING_STARTED.md)
+- [Provider selection authoring](docs/PROVIDER_AUTHORING.md)
+- [Block mutation authoring](docs/BLOCK_MUTATION_AUTHORING.md)
+- [Troubleshooting](docs/TROUBLESHOOTING.md)
