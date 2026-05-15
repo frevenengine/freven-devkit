@@ -99,6 +99,8 @@ Current authoring ownership:
 * use `freven_world_guest_sdk` / `freven_world_api` for gameplay, block/content
   registration, world queries/mutations, terrain-write worldgen, providers,
   and other current world-stack behavior
+* use [`BLOCK_MUTATION_AUTHORING.md`](BLOCK_MUTATION_AUTHORING.md) for
+  simulation-style runtime block mutation patterns, budgets, and diagnostics
 * use `freven-vanilla` as the first-party reference above that world stack
 
 ## 6) Useful flags
