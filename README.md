@@ -101,6 +101,8 @@ Important:
   `freven_world_api`, `freven_world_guest_sdk`, and `freven_world_sdk_types`
   surfaces from **freven-sdk** for block/content registration, world
   queries/mutations, terrain-write worldgen, and world runtime services.
+* Simulation-style runtime block mutation authoring is documented in
+  [`docs/BLOCK_MUTATION_AUTHORING.md`](docs/BLOCK_MUTATION_AUTHORING.md).
 * Vanilla is the first-party reference experience above that world stack. It
   owns first-party gameplay policy such as flat worldgen, humanoid controls,
   break/place ids, and nameplate presentation.
