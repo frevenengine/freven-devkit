@@ -89,6 +89,9 @@ Instance experiences override core experiences by ID (deterministic priority).
 Put mods here:
 `<instance>/mods/<mod_id>/...`
 
+For a first runtime-loaded Wasm mod, follow
+[`FIRST_WASM_MOD.md`](FIRST_WASM_MOD.md).
+
 The exact on-disk format depends on runtime type (wasm/external/native).
 See freven-sdk documentation for the current ABI contracts and layouts.
 
