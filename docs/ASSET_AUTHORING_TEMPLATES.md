@@ -80,4 +80,6 @@ not load.
 
 ## Related docs
 
+- [Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md)
+
 - [Project templates](PROJECT_TEMPLATES.md)

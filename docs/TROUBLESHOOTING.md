@@ -134,3 +134,7 @@ Start with:
     freven_boot config check --instance <instance> --experience <experience_id>
     freven_boot providers explain --instance <instance> --experience <experience_id>
     freven_boot content-assets check --instance <instance> --experience <experience_id>
+
+## Related docs
+
+- [Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md)

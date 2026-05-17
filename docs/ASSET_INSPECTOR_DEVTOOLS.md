@@ -82,6 +82,8 @@ Future runtime/in-game devtools can build on the same contract for:
 
 ## Related docs
 
+- [Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md)
+
 - [Data/content asset workflow](DATA_CONTENT_ASSET_WORKFLOW.md)
 - [Asset pipeline diagnostics](ASSET_PIPELINE_DIAGNOSTICS.md)
 - [Asset authoring templates](ASSET_AUTHORING_TEMPLATES.md)

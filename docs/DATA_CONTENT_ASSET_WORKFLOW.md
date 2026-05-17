@@ -198,6 +198,12 @@ live swap may still require restart until engine hot reload hooks are attached.
 Friendly asset diagnostic output is defined in
 [Asset pipeline diagnostics](ASSET_PIPELINE_DIAGNOSTICS.md).
 
+For shader/material/visual-style ownership, use
+[Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md). The short rule is:
+Engine resolves and renders, SDK defines stable contracts, Vanilla owns
+first-party style, standalone products may replace Vanilla, and mods/content
+packs override through declared selected layers.
+
 ## Example: data-backed Wasm mod
 
 A server-side Wasm mod can provide behavior while authored content remains data:
