@@ -92,3 +92,21 @@ Common examples:
 - Material Registry v1 bridge error during `providers check`: this is a
   current command limitation tracked by frevenengine/freven-devkit#85, not a
   reason to move visual content into config.
+
+## Texture, material, model, or content patch does not load
+
+Run the resolved content/assets check first:
+
+```bash
+./freven_boot content-assets check --instance <instance> --experience <experience_id>
+```
+
+To inspect the selected graph:
+
+```bash
+./freven_boot content-assets explain --instance <instance> --experience <experience_id>
+```
+
+Use this before launching the full client/server runtime. The command reports
+manifest/load-plan/texture asset failures with FVK diagnostics and distinguishes
+authored content/schema problems from runtime/provider bridge problems.
