@@ -175,10 +175,20 @@ Commands available today:
 ./freven_boot config explain --instance <instance> --experience <experience_id>
 ./freven_boot providers check --instance <instance> --experience <experience_id>
 ./freven_boot providers explain --instance <instance> --experience <experience_id>
+./freven_boot content-assets check --instance <instance> --experience <experience_id>
+./freven_boot content-assets explain --instance <instance> --experience <experience_id>
 ```
 
-The dedicated resolved content/assets check command is tracked separately by
-frevenengine/freven-devkit#92. Friendly asset diagnostic output is defined in
+Use `content-assets check` before launch when a texture, material, model, block
+visual, or content patch does not load. It resolves the selected experience or
+stack and validates the rc10 visual asset load plan without starting the full
+client/server runtime.
+
+Use `content-assets explain` when you need to inspect resolved content layers,
+effective assets, dependency edges, shadowed overrides, internal slots, and the
+load-plan fingerprint.
+
+Friendly asset diagnostic output is defined in
 [Asset pipeline diagnostics](ASSET_PIPELINE_DIAGNOSTICS.md).
 
 ## Example: data-backed Wasm mod

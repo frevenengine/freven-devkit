@@ -20,8 +20,9 @@ This document answers:
 
 ## Non-goals
 
-This document does not implement the final command that walks a resolved
-content/assets graph. That command is tracked by frevenengine/freven-devkit#92.
+This document does not itself implement the command that walks a resolved
+content/assets graph. The current command surface is documented below and is
+implemented by frevenengine/freven-boot#86.
 
 This document does not fix the current `providers check` Material Registry v1
 runtime-path failure. That concrete bug is tracked by frevenengine/freven-devkit#85.
@@ -385,10 +386,36 @@ Those errors should be preserved, but DevKit commands should translate them
 into this author-facing shape instead of exposing only internal build/runtime
 phrasing.
 
+## Command surface
+
+`freven_boot content-assets check` validates the resolved rc10 visual asset load
+plan for the selected experience or stack.
+
+```bash
+./freven_boot content-assets check --instance <instance> --experience <experience_id>
+```
+
+Use it when authored texture, material, model, shader/effect, block visual, or
+content patch data does not load.
+
+`freven_boot content-assets explain` prints the resolved graph:
+
+```bash
+./freven_boot content-assets explain --instance <instance> --experience <experience_id>
+```
+
+The explain output includes selected content layers, effective assets,
+dependency edges, shadowed overrides, internal slots, and the load-plan
+fingerprint.
+
+This command is the preferred pre-launch path for asset/content validation. Do
+not route visual asset diagnosis through `providers check` unless you are
+specifically debugging provider declarations.
+
 ## Relationship to other rc10 DevKit issues
 
-- frevenengine/freven-devkit#92 should implement the command that emits these
-  diagnostics for resolved content/assets load plans.
+- frevenengine/freven-boot#86 implements the current `content-assets check` and
+  `content-assets explain` command surface for resolved visual load plans.
 - frevenengine/freven-devkit#85 should fix the current `providers check`
   Material Registry v1 failure path.
 - frevenengine/freven-devkit#88 should display the same diagnostic fields in
