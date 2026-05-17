@@ -231,3 +231,19 @@ did not resolve for the server runtime.
 Provider selection is part of the public DevKit authoring contract: a provider
 key is not just an implementation detail, it is the stable name that experiences
 and stacks select.
+
+## Provider default diagnostics
+
+If `providers check` reports that a default such as `worldgen`,
+`character_controller`, or `client_control_provider` did not resolve, treat it
+as a provider ownership/default selection problem first.
+
+Run:
+
+    freven_boot providers list --instance <instance> --experience <experience_id>
+    freven_boot providers explain --instance <instance> --experience <experience_id>
+
+Then update the selected provider key in `[defaults]` or `[layers.defaults]` to a
+listed key, or add/fix the mod that registers that provider.
+
+See [Friendly authoring diagnostics](FRIENDLY_DIAGNOSTICS.md).

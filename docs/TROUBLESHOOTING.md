@@ -111,3 +111,26 @@ To inspect the selected graph:
 Use this before launching the full client/server runtime. The command reports
 manifest/load-plan/texture asset failures with FVK diagnostics and distinguishes
 authored content/schema problems from runtime/provider bridge problems.
+
+## Friendly authoring diagnostics
+
+DevKit diagnostics should point at the owning file/field and the next focused
+command.
+
+Use [Friendly authoring diagnostics](FRIENDLY_DIAGNOSTICS.md) when an error
+mentions:
+
+- `mod.toml`;
+- `experience.toml` or `experience.stack.toml`;
+- provider defaults;
+- worldgen selection;
+- load-plan construction;
+- world/save compatibility;
+- vertical contract mismatch;
+- `expected_old` mutation mismatch.
+
+Start with:
+
+    freven_boot config check --instance <instance> --experience <experience_id>
+    freven_boot providers explain --instance <instance> --experience <experience_id>
+    freven_boot content-assets check --instance <instance> --experience <experience_id>
