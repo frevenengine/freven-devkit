@@ -77,3 +77,7 @@ These templates are designed to avoid common diagnostics from
 Use [Data/content asset workflow](DATA_CONTENT_ASSET_WORKFLOW.md) for ownership
 boundaries and [Troubleshooting](TROUBLESHOOTING.md) when a copied template does
 not load.
+
+## Related docs
+
+- [Project templates](PROJECT_TEMPLATES.md)

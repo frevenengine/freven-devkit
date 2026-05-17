@@ -160,6 +160,7 @@ authoring contracts:
 - [Getting started](GETTING_STARTED.md)
 - [Provider selection authoring](PROVIDER_AUTHORING.md)
 - [Block mutation authoring](BLOCK_MUTATION_AUTHORING.md)
+- [Project templates](PROJECT_TEMPLATES.md)
 - [Data/content asset workflow](DATA_CONTENT_ASSET_WORKFLOW.md)
 - [Asset pipeline diagnostics](ASSET_PIPELINE_DIAGNOSTICS.md)
 - [Asset inspector / devtools](ASSET_INSPECTOR_DEVTOOLS.md)

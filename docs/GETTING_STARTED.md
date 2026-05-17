@@ -95,6 +95,16 @@ For a first runtime-loaded Wasm mod, follow
 The exact on-disk format depends on runtime type (wasm/external/native).
 See freven-sdk documentation for the current ABI contracts and layouts.
 
+## Starting from project templates
+
+DevKit distributions include project templates for standalone games,
+vanilla-style mods, content packs, game modes, worldgen mods, block mods, and
+simulation mods.
+
+See [Project templates](PROJECT_TEMPLATES.md) before creating a new mod/project
+layout by hand.
+
+
 Current authoring ownership:
 
 * use [`DATA_CONTENT_ASSET_WORKFLOW.md`](DATA_CONTENT_ASSET_WORKFLOW.md) when
