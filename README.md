@@ -135,6 +135,7 @@ Include:
 
 - [Getting started](docs/GETTING_STARTED.md)
 - [First Wasm mod](docs/FIRST_WASM_MOD.md)
+- [Data/content asset workflow](docs/DATA_CONTENT_ASSET_WORKFLOW.md)
 - [Provider selection authoring](docs/PROVIDER_AUTHORING.md)
 - [Block mutation authoring](docs/BLOCK_MUTATION_AUTHORING.md)
 - [Troubleshooting](docs/TROUBLESHOOTING.md)

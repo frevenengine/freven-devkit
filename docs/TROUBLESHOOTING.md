@@ -60,3 +60,19 @@ default validation is side-aware: server validates `worldgen` and
 `client_control_provider`.
 
 See [Provider selection authoring](PROVIDER_AUTHORING.md).
+
+## Content or asset file is not loading
+
+First identify the boundary that owns the fix:
+
+- `mod.toml` is manifest/capability metadata.
+- `config.schema.toml` and active `[config."<mod_id>"]` values are runtime
+  configuration.
+- `content/` and `content.manifest` are authored gameplay/visual content source.
+- asset files are resource bytes referenced by content declarations.
+- generated cache is rebuildable output.
+- `worlds/` is save/world state, not shipped defaults.
+
+See [Data/content asset workflow](DATA_CONTENT_ASSET_WORKFLOW.md) before moving
+authored data into config or rebuilding Wasm just to change data files.
+

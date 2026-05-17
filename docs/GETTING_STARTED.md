@@ -96,6 +96,12 @@ The exact on-disk format depends on runtime type (wasm/external/native).
 See freven-sdk documentation for the current ABI contracts and layouts.
 
 Current authoring ownership:
+The data/content asset workflow is documented in
+[`DATA_CONTENT_ASSET_WORKFLOW.md`](DATA_CONTENT_ASSET_WORKFLOW.md). Use it when
+you are shipping authored gameplay definitions, visual content declarations,
+data-only content, or product-owned content. Do not put authored content data in
+active config, generated cache, or save/world state.
+
 
 * use `freven_guest_sdk` / `freven_mod_api` only for neutral platform-shaped
   declarations

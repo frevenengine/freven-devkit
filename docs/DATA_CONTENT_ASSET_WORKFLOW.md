@@ -1,0 +1,322 @@
+# Data/content asset workflow
+
+This document defines the DevKit-facing workflow for authored gameplay/content
+data and referenced asset files.
+
+It is the author-facing bridge between the SDK rc10 content contracts and the
+current DevKit package/layout guidance.
+
+## Core rule
+
+Do not mix these categories:
+
+- manifest: package identity, dependency, trust, execution, surfaces,
+  entrypoint, capability requests, schema references;
+- config schema: supported runtime settings and defaults;
+- active config: selected runtime values for one experience or stack;
+- content data: authored gameplay and visual definitions;
+- asset files: resource bytes referenced by content declarations;
+- generated cache: derived tooling/runtime output;
+- save/world state: runtime-persistent world/player/session data.
+
+A file may reference another category, but it should not become that category.
+For example, `mod.toml` may reference `config.schema.toml`, but it is not active
+runtime config. A material entry may reference a texture, but the texture file is
+not the material definition. A generated atlas/load plan may be built from source
+assets, but it is not authored source.
+
+## What belongs where
+
+### `mod.toml`
+
+Use `mod.toml` for package metadata:
+
+```toml
+schema = 3
+id = "example.weather"
+version = "0.1.0"
+artifact = "wasm_module"
+execution = "wasm_guest"
+trust = "sandboxed"
+policy = "safe_guest"
+surfaces = "server"
+entry = "mod.wasm"
+config_schema = "config.schema.toml"
+```
+
+Do not put active runtime values or authored gameplay definitions in `mod.toml`.
+
+### `config.schema.toml`
+
+Use `config.schema.toml` for settings that users/admins tune:
+
+```toml
+schema = 1
+
+[[settings]]
+key = "enabled"
+type = "bool"
+default = true
+scope = "server_world"
+reload = "runtime"
+authority = "server"
+```
+
+Active values belong in the selected experience or stack:
+
+```toml
+[config."example.weather"]
+enabled = true
+```
+
+or:
+
+```toml
+[layers.config."example.weather"]
+enabled = true
+```
+
+### `content/` and `content.manifest`
+
+Use content files for authored definitions:
+
+```text
+experiences/example.game/
+  experience.toml
+  content.manifest
+  content/
+    blocks/
+    items/
+    recipes/
+    tags/
+    materials/
+    models/
+    visuals/
+    data/
+```
+
+Examples of content data:
+
+- block/item/recipe/entity definitions;
+- material/model/visual bindings;
+- semantic tags and families;
+- loot tables;
+- dialogue data;
+- NPC archetypes;
+- schedules;
+- location registries;
+- encounter tables;
+- product-authored gameplay definitions.
+
+Current DevKit/Boot experience content is selected through:
+
+```toml
+[content]
+root = "content"
+manifest = "content.manifest"
+```
+
+A stack should inherit base content unless a layer explicitly declares a content
+overlay. A standalone/product-owned experience should declare its own content
+root when it owns content.
+
+### Asset files
+
+Asset files are bytes referenced by content declarations.
+
+Examples:
+
+```text
+content/
+  textures/
+    block/example_block.png
+  models/
+    block/example_model.toml
+  shaders/
+```
+
+Long-term SDK contracts distinguish authored content definitions from asset
+resource bytes. The exact root name may evolve with the asset/content resolver,
+but the boundary stays the same: authored declarations are source, generated
+atlases/load plans are cache, and renderer-internal ids are not author-facing
+asset identities.
+
+### Generated cache
+
+Generated cache is derived output. It may contain load plans, validation indexes,
+atlases, texture arrays, fingerprints, or compiled/transcoded assets.
+
+Authors should not edit generated cache as source.
+
+### Save/world state
+
+Save/world state belongs under runtime world storage. It is not shipped content
+defaults and should not be edited to define a mod's default content.
+
+Authoritative content changes may require compatibility handling or migration.
+That is separate from editing content source files.
+
+## Current author workflow
+
+1. Put executable behavior in a Wasm/native/external mod only when behavior is
+   needed.
+2. Put user/admin-tunable settings in schema-backed config.
+3. Put authored gameplay/visual data in content source.
+4. Reference resource files from content declarations.
+5. Select the experience or stack that owns the content root.
+6. Validate config and provider selection before launch.
+7. Use launch/load-plan diagnostics for current content errors until the
+   dedicated content/assets check command lands.
+
+Commands available today:
+
+```bash
+./freven_boot config check --instance <instance> --experience <experience_id>
+./freven_boot config explain --instance <instance> --experience <experience_id>
+./freven_boot providers check --instance <instance> --experience <experience_id>
+./freven_boot providers explain --instance <instance> --experience <experience_id>
+```
+
+The dedicated resolved content/assets check command is tracked separately by
+frevenengine/freven-devkit#92. Friendly asset diagnostics are tracked separately
+by frevenengine/freven-devkit#86.
+
+## Example: data-backed Wasm mod
+
+A server-side Wasm mod can provide behavior while authored content remains data:
+
+```text
+mods/example.weather/
+  mod.toml
+  config.schema.toml
+  mod.wasm
+
+experiences/example.weather_stack/
+  experience.stack.toml
+```
+
+The stack selects the mod and its runtime config:
+
+```toml
+schema = 1
+id = "example.weather_stack"
+version = "0.1.0"
+title = "Base + Weather"
+base = "freven.vanilla"
+
+[[layers]]
+id = "example.weather_layer"
+version = "0.1.0"
+
+[[layers.mods]]
+id = "example.weather"
+version = "^0.1"
+
+[layers.config."example.weather"]
+enabled = true
+```
+
+If the same package also needs authored content data, do not hide it inside
+`include_str!()` unless it is truly code-owned. Prefer a content source path that
+the DevKit can inspect and validate.
+
+## Example: product-owned standalone content
+
+A standalone game that owns its content should keep it under its product-owned
+experience:
+
+```text
+core_experiences/example.game/
+  experience.toml
+  content.manifest
+  content/
+    blocks/
+    tags/
+    materials/
+    textures/
+    data/
+  mods/example.game.core/
+    mod.toml
+    mod.wasm
+```
+
+The experience declares:
+
+```toml
+[content]
+root = "content"
+manifest = "content.manifest"
+```
+
+The bundled core mod can provide behavior, providers, or runtime services. The
+content root owns authored definitions and referenced resources.
+
+## Common mistakes
+
+### Putting gameplay definitions in config
+
+Config should tune behavior. Content should define authored game data.
+
+Bad fit for config:
+
+- 200 NPC archetypes;
+- quest graph definitions;
+- loot table entries;
+- block/material/model declarations;
+- large schedule/location registries.
+
+Good fit for config:
+
+- enable/disable;
+- small numeric limits;
+- selected mode;
+- debug options;
+- reload policy controlled settings.
+
+### Rebuilding Wasm for every data edit
+
+Embedding data with `include_str!()` is acceptable for small prototypes, tests,
+or code-owned constants. It should not become the default workflow for authored
+content that modders, products, or future tools should inspect.
+
+### Editing generated cache
+
+Generated cache can be deleted and rebuilt. It is not source.
+
+### Using save/world state as defaults
+
+World saves persist runtime state. Shipped content defaults belong in package or
+experience source files.
+
+### Leaking renderer internals
+
+Content/asset authoring should use stable namespaced keys and source paths, not
+renderer slots, atlas coordinates, Bevy handles, or GPU ids.
+
+## Relationship to SDK docs
+
+The SDK defines the long-term contracts:
+
+- architecture ownership;
+- package boundaries;
+- visual asset model;
+- layered asset overrides;
+- content patch/merge semantics;
+- creator-friendly content schema;
+- data-driven authoring layer;
+- material, texture, model, variant, tint, lighting, and shader/effect contracts.
+
+This DevKit document explains how authors should think about those contracts from
+the packaged DevKit workflow.
+
+## Done criteria for this workflow layer
+
+This workflow layer is considered present when DevKit users can answer:
+
+- where do I put package identity?
+- where do I put runtime settings?
+- where do I put authored gameplay/visual data?
+- where do I put referenced resource files?
+- what should never be edited as source?
+- which current commands can I run before launch?
+- which follow-up commands will provide deeper resolved content/asset checks?
