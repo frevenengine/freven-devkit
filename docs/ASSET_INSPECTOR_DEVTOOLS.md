@@ -86,4 +86,5 @@ Future runtime/in-game devtools can build on the same contract for:
 - [Asset pipeline diagnostics](ASSET_PIPELINE_DIAGNOSTICS.md)
 - [Asset authoring templates](ASSET_AUTHORING_TEMPLATES.md)
 - [Asset/content hot reload](ASSET_CONTENT_HOT_RELOAD.md)
+- [Mod DevTools v1](MOD_DEVTOOLS.md)
 - [Troubleshooting](TROUBLESHOOTING.md)
