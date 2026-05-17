@@ -422,8 +422,9 @@ specifically debugging provider declarations.
   v1 bridge path by passing the resolved registry into provider validation.
 - frevenengine/freven-boot#89 adds the current CLI asset inspector surface
   through `freven_boot content-assets inspect`.
-- frevenengine/freven-devkit#91 should use the same diagnostic codes during
-  asset/content hot reload.
+- frevenengine/freven-boot#90 adds the current conservative
+  `freven_boot content-assets watch` workflow for asset/content hot reload
+  iteration.
 - frevenengine/freven-boot#88 adds packaged asset authoring templates that
   avoid these diagnostics by default.
 

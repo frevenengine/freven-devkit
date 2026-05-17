@@ -177,6 +177,8 @@ Commands available today:
 ./freven_boot providers explain --instance <instance> --experience <experience_id>
 ./freven_boot content-assets check --instance <instance> --experience <experience_id>
 ./freven_boot content-assets explain --instance <instance> --experience <experience_id>
+./freven_boot content-assets inspect --instance <instance> --experience <experience_id>
+./freven_boot content-assets watch --instance <instance> --experience <experience_id>
 ```
 
 Use `content-assets check` before launch when a texture, material, model, block
@@ -187,6 +189,11 @@ client/server runtime.
 Use `content-assets explain` when you need to inspect resolved content layers,
 effective assets, dependency edges, shadowed overrides, internal slots, and the
 load-plan fingerprint.
+
+Use `content-assets watch` during development when you want a conservative
+edit/check loop for texture, material, model, visual, or content source changes.
+The watcher validates changes and reports diagnostics/fingerprints, but runtime
+live swap may still require restart until engine hot reload hooks are attached.
 
 Friendly asset diagnostic output is defined in
 [Asset pipeline diagnostics](ASSET_PIPELINE_DIAGNOSTICS.md).
