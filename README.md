@@ -138,6 +138,7 @@ Include:
 - [Data/content asset workflow](docs/DATA_CONTENT_ASSET_WORKFLOW.md)
 - [Asset pipeline diagnostics](docs/ASSET_PIPELINE_DIAGNOSTICS.md)
 - [Asset authoring templates](docs/ASSET_AUTHORING_TEMPLATES.md)
+- [Asset inspector / devtools](docs/ASSET_INSPECTOR_DEVTOOLS.md)
 - [Provider selection authoring](docs/PROVIDER_AUTHORING.md)
 - [Block mutation authoring](docs/BLOCK_MUTATION_AUTHORING.md)
 - [Troubleshooting](docs/TROUBLESHOOTING.md)

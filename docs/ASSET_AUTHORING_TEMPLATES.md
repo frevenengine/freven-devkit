@@ -52,6 +52,7 @@ Copy a template directory into an instance `experiences/` directory, then run:
 
     freven_boot content-assets check --instance <instance> --experience <template_id>
     freven_boot content-assets explain --instance <instance> --experience <template_id>
+    freven_boot content-assets inspect --instance <instance> --experience <template_id>
 
 Before shipping:
 
