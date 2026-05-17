@@ -89,9 +89,10 @@ Common examples:
 - alpha/render-layer mismatch: fix the material or visual declaration;
 - generated atlas/load-plan/cache problem: rebuild generated cache, do not edit
   generated output as source;
-- Material Registry v1 bridge error during `providers check`: this is a
-  current command limitation tracked by frevenengine/freven-devkit#85, not a
-  reason to move visual content into config.
+- Material Registry v1 errors during `providers check`: current DevKit builds
+  the resolved Material Registry before provider validation. If this still
+  fails, run `freven_boot content-assets check` first because the problem is
+  now in the content/assets graph, not provider declaration resolution.
 
 ## Texture, material, model, or content patch does not load
 

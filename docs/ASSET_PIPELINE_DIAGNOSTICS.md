@@ -24,8 +24,10 @@ This document does not itself implement the command that walks a resolved
 content/assets graph. The current command surface is documented below and is
 implemented by frevenengine/freven-boot#86.
 
-This document does not fix the current `providers check` Material Registry v1
-runtime-path failure. That concrete bug is tracked by frevenengine/freven-devkit#85.
+Current DevKit provider checks build the resolved Material Registry v1 before
+provider validation, so material-key block visuals should not fail as a provider
+catalog bridge error. If Material Registry construction fails, use
+`freven_boot content-assets check` to diagnose the content/assets graph first.
 
 This document does not implement the visual inspector, hot reload, or authoring
 templates. Those are separate rc10 DevKit issues.
@@ -330,7 +332,7 @@ command: providers check
 selected experience: freven.vanilla
 reason: material-key block visuals require a resolved Material Registry v1
 fix: use the content/assets check command once available, or run launch-time validation; this providers check path should not present this as a content authoring error.
-tracked by: frevenengine/freven-devkit#85
+fixed by: frevenengine/freven-boot#87
 ```
 
 ## Suggested fix snippets
@@ -416,8 +418,8 @@ specifically debugging provider declarations.
 
 - frevenengine/freven-boot#86 implements the current `content-assets check` and
   `content-assets explain` command surface for resolved visual load plans.
-- frevenengine/freven-devkit#85 should fix the current `providers check`
-  Material Registry v1 failure path.
+- frevenengine/freven-boot#87 fixes the `providers check` Material Registry
+  v1 bridge path by passing the resolved registry into provider validation.
 - frevenengine/freven-devkit#88 should display the same diagnostic fields in
   the inspector/devtools UI.
 - frevenengine/freven-devkit#91 should use the same diagnostic codes during
