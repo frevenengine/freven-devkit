@@ -420,8 +420,8 @@ specifically debugging provider declarations.
   `content-assets explain` command surface for resolved visual load plans.
 - frevenengine/freven-boot#87 fixes the `providers check` Material Registry
   v1 bridge path by passing the resolved registry into provider validation.
-- frevenengine/freven-devkit#88 should display the same diagnostic fields in
-  the inspector/devtools UI.
+- frevenengine/freven-boot#89 adds the current CLI asset inspector surface
+  through `freven_boot content-assets inspect`.
 - frevenengine/freven-devkit#91 should use the same diagnostic codes during
   asset/content hot reload.
 - frevenengine/freven-boot#88 adds packaged asset authoring templates that
