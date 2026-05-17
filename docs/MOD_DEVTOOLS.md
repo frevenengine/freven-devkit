@@ -20,6 +20,7 @@ editing for every subsystem.
 | Check texture/material/model/content graph | `freven_boot content-assets check` |
 | Print full resolved content/assets load plan | `freven_boot content-assets explain` |
 | Inspect one asset kind/key | `freven_boot content-assets inspect` |
+| Inspect generated content family entries | `freven_boot content-assets inspect --kind generated` |
 | Watch content/assets during visual iteration | `freven_boot content-assets watch` |
 | Inspect runtime/debug metrics in client | Debug HUD |
 | Export/debug HUD metrics for CI/log review | Debug HUD dump/log consumers |
@@ -55,6 +56,10 @@ Use:
     freven_boot content-assets inspect --instance <instance> --experience <experience_id>
     freven_boot content-assets inspect --instance <instance> --experience <experience_id> --kind material
     freven_boot content-assets inspect --instance <instance> --experience <experience_id> --kind material --key example.assets:materials/stone
+
+For content families, inspect generated entries with:
+
+    freven_boot content-assets inspect --instance <instance> --experience <experience_id> --kind generated
 
 Stable author-facing identity is always a `namespace:path` key.
 
@@ -169,3 +174,4 @@ authoring contracts:
 - [Asset/content hot reload](ASSET_CONTENT_HOT_RELOAD.md)
 - [Friendly authoring diagnostics](FRIENDLY_DIAGNOSTICS.md)
 - [Troubleshooting](TROUBLESHOOTING.md)
+- [Content family authoring](CONTENT_FAMILY_AUTHORING.md)

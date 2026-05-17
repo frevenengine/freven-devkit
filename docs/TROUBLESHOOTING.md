@@ -138,3 +138,25 @@ Start with:
 ## Related docs
 
 - [Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md)
+
+## Content family expansion fails
+
+Run:
+
+    ./freven_boot content-assets check --instance <instance> --experience <experience_id>
+
+Then inspect generated output after the manifest validates:
+
+    ./freven_boot content-assets inspect --instance <instance> --experience <experience_id> --kind generated
+
+Check:
+
+- the family key is namespaced;
+- every axis has valid values;
+- `allow` and `skip` rules reference existing axes and values;
+- no combination is both allowed and skipped;
+- generated material/model/visual/tag keys do not conflict unintentionally;
+- generated materials reference existing textures;
+- generated visuals reference existing models and materials.
+
+See [Content family authoring](CONTENT_FAMILY_AUTHORING.md).

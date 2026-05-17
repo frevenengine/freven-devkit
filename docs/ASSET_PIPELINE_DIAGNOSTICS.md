@@ -445,3 +445,34 @@ This diagnostic layer is present when DevKit users and future tooling agree on:
 - the boundary that owns each kind of fix;
 - examples for common texture/material/model failures;
 - relationship to content/assets check, inspector, hot reload, and packaging.
+
+## Content family diagnostics
+
+Content family diagnostics are content diagnostics. They should point to
+`content.manifest`, the family key, and relevant axis values.
+
+Example:
+
+    error FVK-CONTENT-MANIFEST
+    invalid content manifest family 'example.family:families/broken':
+    combination 'color=red' is both allowed and skipped: intentional conflict
+
+A useful family diagnostic should include:
+
+- family key;
+- source manifest path;
+- source template or field when known;
+- axis values involved in the failure;
+- generated key when the failure concerns generated output;
+- one concrete fix or next command.
+
+Suggested next commands:
+
+    freven_boot content-assets check --instance <instance> --experience <experience_id>
+    freven_boot content-assets inspect --instance <instance> --experience <experience_id> --kind generated
+
+Diagnostics must remain author-facing. Runtime ids, renderer slots, atlas
+coordinates, and GPU handles may only appear in explicit debug/internal sections,
+not as required fixes.
+
+See [Content family authoring](CONTENT_FAMILY_AUTHORING.md).

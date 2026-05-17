@@ -16,6 +16,9 @@ content-first starting points for visual/content authoring.
 | `material_pack` | You want reusable material keys shared by blocks/models. |
 | `block_model_pack` | You want forward-compatible model/visual source files next to validated materials. |
 | `standalone_visual_style_pack` | A standalone product owns its style instead of inheriting Vanilla visuals. |
+| `rock_family_pack` | You want compact generated rock variants with material/visual/tag entries. |
+| `soil_grass_family_pack` | You want generated soil x grass coverage variants with skipped combinations. |
+| `colored_glass_family_pack` | You want generated transparent colored-glass variants. |
 
 ## What each template contains
 
@@ -26,7 +29,8 @@ Each template includes:
 - `content/textures/example_16.png`;
 - `content/textures/example_32.png`;
 - material declarations;
-- README notes with `content-assets check` and `content-assets explain`.
+- family declarations for generated variant templates where applicable;
+- README notes with `content-assets check`, `content-assets explain`, and `content-assets inspect --kind generated`.
 
 `block_model_pack` also includes forward-compatible model and block-visual
 source skeleton files. They are tracked through `content.manifest` entries while
@@ -83,3 +87,25 @@ not load.
 - [Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md)
 
 - [Project templates](PROJECT_TEMPLATES.md)
+
+## Family templates
+
+Family templates demonstrate compact generated variant authoring:
+
+    freven_boot content-assets check --instance <instance> --experience <template_id>
+    freven_boot content-assets inspect --instance <instance> --experience <template_id> --kind generated
+
+Use:
+
+- `rock_family_pack` for rock variants;
+- `soil_grass_family_pack` for cartesian-product variants with skipped
+  combinations;
+- `colored_glass_family_pack` for transparent generated variants with structured
+  axis metadata.
+
+The framed-glass workflow is currently an advanced composition of
+`block_model_pack` and `colored_glass_family_pack`; a dedicated framed-glass
+family template should wait until rich per-part model-family templates are
+stable.
+
+See [Content family authoring](CONTENT_FAMILY_AUTHORING.md).
