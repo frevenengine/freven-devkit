@@ -74,4 +74,4 @@ First identify the boundary that owns the fix:
 - `worlds/` is save/world state, not shipped defaults.
 
 See [Data/content asset workflow](DATA_CONTENT_ASSET_WORKFLOW.md) before moving
-authored data into config or rebuilding Wasm just to change data files.\n
+authored data into config or rebuilding Wasm just to change data files.
