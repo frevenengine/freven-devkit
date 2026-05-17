@@ -178,8 +178,8 @@ Commands available today:
 ```
 
 The dedicated resolved content/assets check command is tracked separately by
-frevenengine/freven-devkit#92. Friendly asset diagnostics are tracked separately
-by frevenengine/freven-devkit#86.
+frevenengine/freven-devkit#92. Friendly asset diagnostic output is defined in
+[Asset pipeline diagnostics](ASSET_PIPELINE_DIAGNOSTICS.md).
 
 ## Example: data-backed Wasm mod
 
