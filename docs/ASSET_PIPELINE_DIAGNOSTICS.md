@@ -424,8 +424,8 @@ specifically debugging provider declarations.
   the inspector/devtools UI.
 - frevenengine/freven-devkit#91 should use the same diagnostic codes during
   asset/content hot reload.
-- frevenengine/freven-devkit#87 should generate templates that avoid these
-  diagnostics by default.
+- frevenengine/freven-boot#88 adds packaged asset authoring templates that
+  avoid these diagnostics by default.
 
 ## Done criteria for this diagnostic layer
 
