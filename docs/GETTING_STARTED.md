@@ -96,13 +96,11 @@ The exact on-disk format depends on runtime type (wasm/external/native).
 See freven-sdk documentation for the current ABI contracts and layouts.
 
 Current authoring ownership:
-The data/content asset workflow is documented in
-[`DATA_CONTENT_ASSET_WORKFLOW.md`](DATA_CONTENT_ASSET_WORKFLOW.md). Use it when
-you are shipping authored gameplay definitions, visual content declarations,
-data-only content, or product-owned content. Do not put authored content data in
-active config, generated cache, or save/world state.
 
-
+* use [`DATA_CONTENT_ASSET_WORKFLOW.md`](DATA_CONTENT_ASSET_WORKFLOW.md) when
+  shipping authored gameplay definitions, visual content declarations,
+  data-only content, or product-owned content; do not put authored content
+  data in active config, generated cache, or save/world state
 * use `freven_guest_sdk` / `freven_mod_api` only for neutral platform-shaped
   declarations
 * use `freven_world_guest_sdk` / `freven_world_api` for gameplay, block/content
@@ -137,4 +135,4 @@ validate those provider defaults:
 On Windows, use `freven_boot.exe` with the same `providers` subcommands.
 
 See [Provider selection authoring](PROVIDER_AUTHORING.md) for the full provider
-key contract and side-aware validation rules.
+key contract and side-aware validation rules.\n

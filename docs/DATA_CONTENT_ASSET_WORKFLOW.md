@@ -319,4 +319,4 @@ This workflow layer is considered present when DevKit users can answer:
 - where do I put referenced resource files?
 - what should never be edited as source?
 - which current commands can I run before launch?
-- which follow-up commands will provide deeper resolved content/asset checks?
+- which follow-up commands will provide deeper resolved content/asset checks?\n
