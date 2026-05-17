@@ -75,3 +75,20 @@ First identify the boundary that owns the fix:
 
 See [Data/content asset workflow](DATA_CONTENT_ASSET_WORKFLOW.md) before moving
 authored data into config or rebuilding Wasm just to change data files.
+
+## Asset pipeline diagnostic points at the wrong kind of file
+
+Use [Asset pipeline diagnostics](ASSET_PIPELINE_DIAGNOSTICS.md) to identify the
+ownership boundary before editing files.
+
+Common examples:
+
+- missing `namespace:path` key: fix the authored content declaration or the
+  package/layer that should provide the key;
+- missing PNG/model/shader file: fix the asset path or add the resource file;
+- alpha/render-layer mismatch: fix the material or visual declaration;
+- generated atlas/load-plan/cache problem: rebuild generated cache, do not edit
+  generated output as source;
+- Material Registry v1 bridge error during `providers check`: this is a
+  current command limitation tracked by frevenengine/freven-devkit#85, not a
+  reason to move visual content into config.
