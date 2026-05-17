@@ -22,6 +22,14 @@ Inspect one stable asset key:
 
     freven_boot content-assets inspect --instance <instance> --experience <experience_id> --kind material --key example.assets:materials/stone
 
+Inspect generated content family output:
+
+    freven_boot content-assets inspect --instance <instance> --experience <experience_id> --kind generated
+
+Inspect one content family:
+
+    freven_boot content-assets inspect --instance <instance> --experience <experience_id> --kind generated --key example.assets:families/rock
+
 Show renderer/runtime internal slots:
 
     freven_boot content-assets inspect --instance <instance> --experience <experience_id> --kind material --key example.assets:materials/stone --show-internal
@@ -39,6 +47,7 @@ The inspector prints author-facing resolved asset information:
 - shadowed declarations;
 - render-layer summary;
 - missing key guidance;
+- generated content family output when `--kind generated` is selected;
 - internal slots only when `--show-internal` is explicitly used.
 
 ## Stable identity vs debug internals
@@ -90,3 +99,17 @@ Future runtime/in-game devtools can build on the same contract for:
 - [Asset/content hot reload](ASSET_CONTENT_HOT_RELOAD.md)
 - [Mod DevTools v1](MOD_DEVTOOLS.md)
 - [Troubleshooting](TROUBLESHOOTING.md)
+
+## Content family inspection
+
+For family-authored content, use:
+
+    freven_boot content-assets inspect --instance <instance> --experience <experience_id> --kind generated
+
+The inspector lists family keys, axes, allow/skip rule counts, generated
+materials, generated models, generated visuals, and generated tags.
+
+This is a source/devtools view of load/build-stage generated semantic content.
+It is not a renderer slot browser.
+
+See [Content family authoring](CONTENT_FAMILY_AUTHORING.md).

@@ -186,6 +186,9 @@ visual, or content patch does not load. It resolves the selected experience or
 stack and validates the rc10 visual asset load plan without starting the full
 client/server runtime.
 
+Use `content-assets inspect --kind generated` when you need to inspect content
+family expansion output before launch.
+
 Use `content-assets explain` when you need to inspect resolved content layers,
 effective assets, dependency edges, shadowed overrides, internal slots, and the
 load-plan fingerprint.
@@ -343,3 +346,26 @@ This workflow layer is considered present when DevKit users can answer:
 - what should never be edited as source?
 - which current commands can I run before launch?
 - which follow-up commands will provide deeper resolved content/asset checks?
+
+## Content family expansion
+
+Content families are compact source declarations in `content.manifest`. They
+expand during the load/build stage into ordinary semantic entries before runtime
+consumers build material registries, visual load plans, block visual mesh tables,
+or tag registries.
+
+Expansion order:
+
+1. resolve selected experience/stack layers;
+2. load authored content manifests;
+3. validate family declarations;
+4. expand axes, allowed combinations, skipped combinations, and templates;
+5. validate generated materials/models/visuals/tags;
+6. consume the expanded semantic entries through the normal content/assets
+   pipeline.
+
+Generated family output participates in the same stable-key override and
+patch/merge rules as hand-authored content. Authors should override generated
+semantic keys intentionally, not renderer/runtime internals.
+
+See [Content family authoring](CONTENT_FAMILY_AUTHORING.md).

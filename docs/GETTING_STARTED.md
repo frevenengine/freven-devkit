@@ -116,6 +116,9 @@ Current authoring ownership:
   shipping authored gameplay definitions, visual content declarations,
   data-only content, or product-owned content; do not put authored content
   data in active config, generated cache, or save/world state
+* use [`CONTENT_FAMILY_AUTHORING.md`](CONTENT_FAMILY_AUTHORING.md) when
+  generating rock, soil/grass, colored-glass, or similar variant families from
+  compact content source
 * use `freven_guest_sdk` / `freven_mod_api` only for neutral platform-shaped
   declarations
 * use `freven_world_guest_sdk` / `freven_world_api` for gameplay, block/content
