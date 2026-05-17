@@ -164,4 +164,5 @@ authoring contracts:
 - [Asset pipeline diagnostics](ASSET_PIPELINE_DIAGNOSTICS.md)
 - [Asset inspector / devtools](ASSET_INSPECTOR_DEVTOOLS.md)
 - [Asset/content hot reload](ASSET_CONTENT_HOT_RELOAD.md)
+- [Friendly authoring diagnostics](FRIENDLY_DIAGNOSTICS.md)
 - [Troubleshooting](TROUBLESHOOTING.md)

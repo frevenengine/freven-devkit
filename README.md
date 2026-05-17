@@ -141,6 +141,7 @@ Include:
 - [Asset inspector / devtools](docs/ASSET_INSPECTOR_DEVTOOLS.md)
 - [Asset/content hot reload](docs/ASSET_CONTENT_HOT_RELOAD.md)
 - [Mod DevTools v1](docs/MOD_DEVTOOLS.md)
+- [Friendly authoring diagnostics](docs/FRIENDLY_DIAGNOSTICS.md)
 - [Provider selection authoring](docs/PROVIDER_AUTHORING.md)
 - [Block mutation authoring](docs/BLOCK_MUTATION_AUTHORING.md)
 - [Troubleshooting](docs/TROUBLESHOOTING.md)
