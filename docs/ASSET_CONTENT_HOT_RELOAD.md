@@ -88,6 +88,8 @@ Future engine/runtime hot reload can build on this workflow for:
 
 ## Related docs
 
+- [Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md)
+
 - [Data/content asset workflow](DATA_CONTENT_ASSET_WORKFLOW.md)
 - [Asset pipeline diagnostics](ASSET_PIPELINE_DIAGNOSTICS.md)
 - [Asset authoring templates](ASSET_AUTHORING_TEMPLATES.md)

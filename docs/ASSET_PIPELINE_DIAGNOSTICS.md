@@ -428,6 +428,13 @@ specifically debugging provider declarations.
 - frevenengine/freven-boot#88 adds packaged asset authoring templates that
   avoid these diagnostics by default.
 
+## Engine vs Vanilla ownership
+
+Asset diagnostics must not tell authors to fix Vanilla style in engine code or to
+copy renderer internals into content. Use [Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md)
+when deciding whether the fix belongs to Engine, SDK, Vanilla, a standalone
+product, a mod, a content pack, generated cache, or save/world state.
+
 ## Done criteria for this diagnostic layer
 
 This diagnostic layer is present when DevKit users and future tooling agree on:

@@ -104,6 +104,11 @@ simulation mods.
 See [Project templates](PROJECT_TEMPLATES.md) before creating a new mod/project
 layout by hand.
 
+Use [Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md) when deciding
+whether a shader, material, visual style, texture library, provider default, or
+content pack belongs in Engine, SDK, Vanilla, a standalone product, or a selected
+mod/content layer.
+
 
 Current authoring ownership:
 

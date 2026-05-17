@@ -165,6 +165,8 @@ Use diagnostics to fix the owning source:
 
 ## Related docs
 
+- [Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md)
+
 - [Getting started](GETTING_STARTED.md)
 - [First Wasm mod](FIRST_WASM_MOD.md)
 - [Provider selection authoring](PROVIDER_AUTHORING.md)

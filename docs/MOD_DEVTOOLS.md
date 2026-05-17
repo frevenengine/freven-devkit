@@ -157,6 +157,8 @@ authoring contracts:
 
 ## Related docs
 
+- [Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md)
+
 - [Getting started](GETTING_STARTED.md)
 - [Provider selection authoring](PROVIDER_AUTHORING.md)
 - [Block mutation authoring](BLOCK_MUTATION_AUTHORING.md)

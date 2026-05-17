@@ -143,6 +143,7 @@ Include:
 - [Mod DevTools v1](docs/MOD_DEVTOOLS.md)
 - [Friendly authoring diagnostics](docs/FRIENDLY_DIAGNOSTICS.md)
 - [Project templates](docs/PROJECT_TEMPLATES.md)
+- [Engine vs Vanilla ownership](docs/ENGINE_VANILLA_OWNERSHIP.md)
 - [Provider selection authoring](docs/PROVIDER_AUTHORING.md)
 - [Block mutation authoring](docs/BLOCK_MUTATION_AUTHORING.md)
 - [Troubleshooting](docs/TROUBLESHOOTING.md)

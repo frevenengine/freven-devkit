@@ -45,6 +45,16 @@ Validate the template catalog from Boot source:
 
 Project templates keep source ownership explicit:
 
+- engine/runtime behavior stays generic;
+- Vanilla is a reference/base experience, not a required dependency;
+- standalone products may be zero-Vanilla and product-owned;
+- mods/content packs extend selected bases through declared layers;
+- visual style belongs to Vanilla, a standalone product, or selected content packs,
+  not engine code.
+
+See [Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md) for the full
+shader/material/visual-style boundary.
+
 - `mod.toml` is package identity, runtime type, trust/surface/capability metadata;
 - `experience.toml` and `experience.stack.toml` select mods, defaults, content roots, and stack overlays;
 - `config.schema.toml` defines tunable runtime settings;
