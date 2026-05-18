@@ -137,6 +137,7 @@ Include:
 - [First Wasm mod](docs/FIRST_WASM_MOD.md)
 - [Data/content asset workflow](docs/DATA_CONTENT_ASSET_WORKFLOW.md)
 - [Modular content authoring](docs/MODULAR_CONTENT_AUTHORING.md)
+- [Content authoring profiles](docs/CONTENT_AUTHORING_PROFILES.md)
 - [Asset pipeline diagnostics](docs/ASSET_PIPELINE_DIAGNOSTICS.md)
 - [Asset authoring templates](docs/ASSET_AUTHORING_TEMPLATES.md)
 - [Content family authoring](docs/CONTENT_FAMILY_AUTHORING.md)

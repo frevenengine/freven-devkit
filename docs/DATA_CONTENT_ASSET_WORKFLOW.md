@@ -198,6 +198,7 @@ Commands available today:
 ./freven_boot config explain --instance <instance> --experience <experience_id>
 ./freven_boot providers check --instance <instance> --experience <experience_id>
 ./freven_boot providers explain --instance <instance> --experience <experience_id>
+./freven_boot content compile --instance <instance> --experience <experience_id> --profile freven.core:canonical_manifest_v1 --explain
 ./freven_boot content-assets check --instance <instance> --experience <experience_id>
 ./freven_boot content-assets explain --instance <instance> --experience <experience_id>
 ./freven_boot content-assets inspect --instance <instance> --experience <experience_id>
@@ -205,6 +206,8 @@ Commands available today:
 ./freven_boot content-assets update-sha --instance <instance> --experience <experience_id>
 ./freven_boot content-assets update-sha --instance <instance> --experience <experience_id> --write
 ```
+
+Use `content compile` when a selected game/mode authoring profile needs to be validated or compiled into the canonical content graph. The default `freven.core:canonical_manifest_v1` profile is a passthrough for current canonical manifests; game-owned profiles such as `freven.vanilla:blocktypes_v1` are opt-in and owned by their game/profile.
 
 Use `content-assets check` before launch when a texture, material, model, block
 visual, or content patch does not load. It resolves the selected experience or

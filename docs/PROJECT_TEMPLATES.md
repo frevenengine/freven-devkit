@@ -207,6 +207,7 @@ Validate with:
 
 After copying any project template into an instance:
 
+    freven_boot content compile --instance <instance> --experience <experience_id> --profile freven.core:canonical_manifest_v1 --explain
     freven_boot config check --instance <instance> --experience <experience_id>
     freven_boot providers explain --instance <instance> --experience <experience_id>
     freven_boot content-assets check --instance <instance> --experience <experience_id>
@@ -227,6 +228,7 @@ Use:
 
 - project templates for project shape;
 - asset authoring templates for texture/material/model/content examples;
+- content authoring profiles for game-owned source schemas such as `freven.vanilla:blocktypes_v1`;
 - standalone product generator for product-owned games;
 - `FIRST_WASM_MOD.md` for a longer first Wasm walkthrough.
 
