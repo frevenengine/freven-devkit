@@ -68,7 +68,7 @@ First identify the boundary that owns the fix:
 - `mod.toml` is manifest/capability metadata.
 - `config.schema.toml` and active `[config."<mod_id>"]` values are runtime
   configuration.
-- `content/` and `content.manifest` are authored gameplay/visual content source.
+- `content/` and `content.manifest` are authored gameplay/visual content source. For large packs, `content.manifest` may be a small explicit `includes = [...]` index over modular source files.
 - asset files are resource bytes referenced by content declarations.
 - generated cache is rebuildable output.
 - `worlds/` is save/world state, not shipped defaults.
@@ -93,6 +93,50 @@ Common examples:
   the resolved Material Registry before provider validation. If this still
   fails, run `freven_boot content-assets check` first because the problem is
   now in the content/assets graph, not provider declaration resolution.
+
+## Modular content manifest include fails
+
+If a content/assets command reports a missing include, invalid include path,
+include cycle, or duplicate semantic key, start from the root manifest selected
+by the experience:
+
+    [content]
+    root = "content"
+    manifest = "content.manifest"
+
+Check that:
+
+- `includes = [...]` paths are explicit and ordered;
+- include paths are relative to the file that declares them;
+- the root `content.manifest` sits next to `content/`, so root includes usually
+  look like `content/textures/terrain.toml`;
+- included files stay inside the selected content root;
+- no include uses an absolute path, `..`, a directory, or generated cache;
+- no two included files declare the same texture/material/model/visual/family/tag
+  key unless that is expressed through a proper selected layer override;
+- family declarations and generated outputs still validate after expansion.
+
+Run:
+
+    ./freven_boot content-assets check --instance <instance> --experience <experience_id>
+    ./freven_boot content-assets explain --instance <instance> --experience <experience_id>
+
+See [Modular content authoring](MODULAR_CONTENT_AUTHORING.md).
+
+## Texture sha256 is missing or stale
+
+If `content-assets check` reports a missing or stale texture hash, do not compute
+and paste hashes by hand. First dry-run:
+
+    ./freven_boot content-assets update-sha --instance <instance> --experience <experience_id>
+
+Then write the exact authored manifest or included source file that owns the
+texture declaration:
+
+    ./freven_boot content-assets update-sha --instance <instance> --experience <experience_id> --write
+
+The command uses declared texture entries only. It does not scan random files
+into content.
 
 ## Texture, material, model, or content patch does not load
 
@@ -138,6 +182,7 @@ Start with:
 ## Related docs
 
 - [Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md)
+- [Modular content authoring](MODULAR_CONTENT_AUTHORING.md)
 
 ## Content family expansion fails
 

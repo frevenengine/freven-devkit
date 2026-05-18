@@ -25,7 +25,7 @@ content-first starting points for visual/content authoring.
 Each template includes:
 
 - `experience.toml` as a minimal selected experience wrapper;
-- `content.manifest` with active manifest v1 declarations;
+- `content.manifest` with active manifest v1 declarations, or a small root manifest with explicit `includes = [...]` for modular packs;
 - `content/textures/example_16.png`;
 - `content/textures/example_32.png`;
 - material declarations;
@@ -50,10 +50,40 @@ The script verifies:
 - manifest sha256 values match source files;
 - each template passes `freven_boot content-assets check`.
 
+## Modular template layout
+
+For larger templates and future Vanilla-style visual packs, use this layout:
+
+    content.manifest
+    content/
+      textures/terrain.toml
+      materials/terrain.toml
+      models/blocks.toml
+      visuals/blocks.toml
+      families/rocks.toml
+      tags/terrain.toml
+
+The root manifest is an explicit index:
+
+    schema = 1
+    includes = [
+      "content/textures/terrain.toml",
+      "content/materials/terrain.toml",
+      "content/models/blocks.toml",
+      "content/visuals/blocks.toml",
+      "content/families/rocks.toml",
+      "content/tags/terrain.toml",
+    ]
+
+Do not use directory scanning, generated cache, or renderer/internal ids as
+authoring template source. See [Modular content authoring](MODULAR_CONTENT_AUTHORING.md).
+
 ## Use a template
 
 Copy a template directory into an instance `experiences/` directory, then run:
 
+    freven_boot content-assets update-sha --instance <instance> --experience <template_id>
+    freven_boot content-assets update-sha --instance <instance> --experience <template_id> --write
     freven_boot content-assets check --instance <instance> --experience <template_id>
     freven_boot content-assets explain --instance <instance> --experience <template_id>
     freven_boot content-assets inspect --instance <instance> --experience <template_id>
@@ -63,7 +93,7 @@ Before shipping:
 
 - replace `example.asset.*` ids and keys with your namespace;
 - replace example PNGs with real texture bytes;
-- update sha256 values in `content.manifest`;
+- run `freven_boot content-assets update-sha --instance <instance> --experience <template_id> --write` after replacing texture bytes;
 - keep generated cache outside authored source;
 - keep active runtime config for tuning, not visual definitions.
 
@@ -72,6 +102,9 @@ Before shipping:
 These templates are designed to avoid common diagnostics from
 [Asset pipeline diagnostics](ASSET_PIPELINE_DIAGNOSTICS.md):
 
+- missing include files or include cycles;
+- duplicate semantic keys across included files;
+- stale or missing texture sha256 fields;
 - missing texture files;
 - bad texture paths;
 - missing material texture references;
@@ -87,6 +120,7 @@ not load.
 - [Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md)
 
 - [Project templates](PROJECT_TEMPLATES.md)
+- [Modular content authoring](MODULAR_CONTENT_AUTHORING.md)
 
 ## Family templates
 

@@ -50,7 +50,7 @@ The author-facing order is:
 
 1. resolve the selected experience or stack;
 2. collect effective content layers;
-3. load each `content.manifest`;
+3. load each `content.manifest`, including explicit modular `includes = [...]` files;
 4. validate authored declarations, including `[[families]]`;
 5. expand families into normal semantic entries;
 6. validate generated references after expansion;
@@ -171,6 +171,7 @@ renderer or mesh internals in author source.
 ## Related docs
 
 - [Data/content asset workflow](DATA_CONTENT_ASSET_WORKFLOW.md)
+- [Modular content authoring](MODULAR_CONTENT_AUTHORING.md)
 - [Asset authoring templates](ASSET_AUTHORING_TEMPLATES.md)
 - [Asset pipeline diagnostics](ASSET_PIPELINE_DIAGNOSTICS.md)
 - [Asset inspector / devtools](ASSET_INSPECTOR_DEVTOOLS.md)

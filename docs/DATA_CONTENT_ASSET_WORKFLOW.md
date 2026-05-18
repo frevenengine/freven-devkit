@@ -110,15 +110,38 @@ Examples of content data:
 
 Current DevKit/Boot experience content is selected through:
 
-```toml
-[content]
-root = "content"
-manifest = "content.manifest"
-```
+    [content]
+    root = "content"
+    manifest = "content.manifest"
 
 A stack should inherit base content unless a layer explicitly declares a content
 overlay. A standalone/product-owned experience should declare its own content
 root when it owns content.
+
+### Modular content manifests
+
+Small packs can keep all declarations in one `content.manifest`. Larger packs
+should use the root manifest as an explicit deterministic source index:
+
+    schema = 1
+    includes = [
+      "content/textures/terrain.toml",
+      "content/materials/terrain.toml",
+      "content/models/blocks.toml",
+      "content/visuals/blocks.toml",
+      "content/families/rocks.toml",
+      "content/tags/terrain.toml",
+    ]
+
+Included files are authored source content. They are not generated cache,
+runtime ids, renderer slots, or hidden imports.
+
+Include paths are resolved relative to the declaring file. They are ordered
+explicitly by the author; DevKit does not scan directories, expand globs, or use
+filesystem order as content order.
+
+Use [Modular content authoring](MODULAR_CONTENT_AUTHORING.md) for the full
+layout, include rules, troubleshooting shape, and hash-update workflow.
 
 ### Asset files
 
@@ -179,6 +202,8 @@ Commands available today:
 ./freven_boot content-assets explain --instance <instance> --experience <experience_id>
 ./freven_boot content-assets inspect --instance <instance> --experience <experience_id>
 ./freven_boot content-assets watch --instance <instance> --experience <experience_id>
+./freven_boot content-assets update-sha --instance <instance> --experience <experience_id>
+./freven_boot content-assets update-sha --instance <instance> --experience <experience_id> --write
 ```
 
 Use `content-assets check` before launch when a texture, material, model, block
@@ -192,6 +217,10 @@ family expansion output before launch.
 Use `content-assets explain` when you need to inspect resolved content layers,
 effective assets, dependency edges, shadowed overrides, internal slots, and the
 load-plan fingerprint.
+
+Use `content-assets update-sha` after adding or editing texture bytes. The
+default dry-run reports missing or stale hashes. Add `--write` to update the
+authored manifest or included source file that owns the texture declaration.
 
 Use `content-assets watch` during development when you want a conservative
 edit/check loop for texture, material, model, visual, or content source changes.
@@ -276,6 +305,25 @@ manifest = "content.manifest"
 
 The bundled core mod can provide behavior, providers, or runtime services. The
 content root owns authored definitions and referenced resources.
+
+## Canonical modular layout
+
+For larger visual/content packs, prefer:
+
+    experiences/example.visual_pack/
+      experience.toml
+      content.manifest
+      content/
+        textures/terrain.toml
+        materials/terrain.toml
+        models/blocks.toml
+        visuals/blocks.toml
+        families/rocks.toml
+        tags/terrain.toml
+
+The root `content.manifest` should stay small and list only `schema` plus
+explicit `includes = [...]`. Vanilla's rc10 split should become the first-party
+reference for this layout, but it should not be a special engine-only path.
 
 ## Common mistakes
 

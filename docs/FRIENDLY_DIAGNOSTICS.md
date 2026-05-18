@@ -23,7 +23,7 @@ Current Boot diagnostics include friendly wrappers for:
 | Load-plan construction failure | provider/content commands | selected experience manifest, active mods, provider defaults, content roots |
 | Provider default mismatch | `providers check/list/explain` | `[defaults]` / `[layers.defaults]` provider keys |
 | Material Registry bridge/content graph | `providers check`, then `content-assets check` | visual content/material declarations |
-| Content/assets graph failure | `content-assets check/explain/inspect/watch` | `content.manifest`, texture/material/model/effect declarations and files |
+| Content/assets graph failure | `content-assets check/explain/inspect/watch/update-sha` | `content.manifest`, included content source files, texture/material/model/effect declarations and files |
 
 The Boot-side implementation landed in frevenengine/freven-boot#91.
 
@@ -159,7 +159,7 @@ Use diagnostics to fix the owning source:
 - `experience.toml` / `experience.stack.toml`: selected mods, defaults, content
   root, stack overlays;
 - `config.schema.toml` and active config: tunable runtime settings;
-- `content/` and `content.manifest`: authored gameplay/visual content source;
+- `content/` and `content.manifest`: authored gameplay/visual content source, including explicit modular `includes = [...]` source files;
 - generated cache: rebuildable output;
 - `worlds/`: runtime save state.
 
@@ -171,6 +171,7 @@ Use diagnostics to fix the owning source:
 - [First Wasm mod](FIRST_WASM_MOD.md)
 - [Provider selection authoring](PROVIDER_AUTHORING.md)
 - [Data/content asset workflow](DATA_CONTENT_ASSET_WORKFLOW.md)
+- [Modular content authoring](MODULAR_CONTENT_AUTHORING.md)
 - [Asset pipeline diagnostics](ASSET_PIPELINE_DIAGNOSTICS.md)
 - [Mod DevTools v1](MOD_DEVTOOLS.md)
 - [Troubleshooting](TROUBLESHOOTING.md)

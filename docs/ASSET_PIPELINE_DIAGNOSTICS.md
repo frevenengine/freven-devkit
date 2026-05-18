@@ -275,6 +275,10 @@ DevKit-friendly asset diagnostics must cover at least these cases:
 | Missing texture key | material/visual key, field, referenced texture key, owner layer, suggested declaration |
 | Missing material key | visual/model/block key, field or slot, referenced material key, owner layer |
 | Missing model key | visual key, field, referenced model key, owner layer |
+| Missing include file | root manifest path, declaring file, include path, resolved path, content-root boundary |
+| Include cycle | root manifest path, include stack, repeated file, suggested ownership split |
+| Duplicate semantic key across includes | semantic kind, key, first source file, second source file, field path when known |
+| Stale texture sha256 | texture key, asset path, manifest/include source file, old hash, new hash, `content-assets update-sha --write` hint |
 | Missing texture file | texture key, expected package-relative path, manifest/source file |
 | Bad image format | texture key, path, accepted formats |
 | Unsupported texture size | texture key, actual dimensions, active profile, accepted dimensions |
@@ -323,6 +327,34 @@ render layer: opaque
 expected: blend materials normally use render_layer = "transparent"
 fix: change render_layer to "transparent", or change alpha_mode to "opaque".
 ```
+
+Example modular include failure:
+
+    error FVK-CONTENT-INCLUDE-MISSING
+    root manifest: experiences/example.visual_pack/content.manifest
+    declared in: experiences/example.visual_pack/content.manifest
+    include: content/textures/terrain.toml
+    resolved path: experiences/example.visual_pack/content/textures/terrain.toml
+    fix: create the included file, remove the include, or correct the path.
+
+Example include cycle:
+
+    error FVK-CONTENT-INCLUDE-CYCLE
+    root manifest: experiences/example.visual_pack/content.manifest
+    include stack:
+      content.manifest
+      content/families/rocks.toml
+      content/families/common.toml
+      content/families/rocks.toml
+    fix: make one file own the shared declarations and include it from only one direction.
+
+Example stale hash:
+
+    error FVK-ASSET-SHA256-MISMATCH
+    texture key: example.visual:textures/block/stone
+    declared in: experiences/example.visual_pack/content/textures/terrain.toml
+    asset path: content/textures/stone.png
+    fix: run `freven_boot content-assets update-sha --instance <instance> --experience <experience_id> --write` after intentionally changing the texture bytes.
 
 Example bridge limitation:
 
@@ -400,6 +432,13 @@ plan for the selected experience or stack.
 Use it when authored texture, material, model, shader/effect, block visual, or
 content patch data does not load.
 
+`freven_boot content-assets update-sha` reports and fixes missing or stale texture hashes from declared texture asset bytes:
+
+    ./freven_boot content-assets update-sha --instance <instance> --experience <experience_id>
+    ./freven_boot content-assets update-sha --instance <instance> --experience <experience_id> --write
+
+It must use declared texture entries only. It must not import arbitrary files by scanning the filesystem.
+
 `freven_boot content-assets explain` prints the resolved graph:
 
 ```bash
@@ -416,8 +455,11 @@ specifically debugging provider declarations.
 
 ## Relationship to other rc10 DevKit issues
 
-- frevenengine/freven-boot#86 implements the current `content-assets check` and
+- frevenengine/freven-boot#86 implements the `content-assets check` and
   `content-assets explain` command surface for resolved visual load plans.
+- frevenengine/freven-boot#99 implements `content-assets update-sha` for
+  declared texture hash authoring.
+- frevenengine/freven-engine#319 implements modular manifest include expansion.
 - frevenengine/freven-boot#87 fixes the `providers check` Material Registry
   v1 bridge path by passing the resolved registry into provider validation.
 - frevenengine/freven-boot#89 adds the current CLI asset inspector surface

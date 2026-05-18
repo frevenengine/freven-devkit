@@ -59,7 +59,7 @@ shader/material/visual-style boundary.
 - `experience.toml` and `experience.stack.toml` select mods, defaults, content roots, and stack overlays;
 - `config.schema.toml` defines tunable runtime settings;
 - active config stores user/admin-selected values;
-- `content/` and `content.manifest` store authored gameplay/visual content source;
+- `content/` and `content.manifest` store authored gameplay/visual content source; larger packs may use a small root manifest with explicit `includes = [...]` modular files;
 - generated cache is rebuildable output;
 - `worlds/` is runtime save state.
 
@@ -235,6 +235,7 @@ Use:
 - [Getting started](GETTING_STARTED.md)
 - [First Wasm mod](FIRST_WASM_MOD.md)
 - [Data/content asset workflow](DATA_CONTENT_ASSET_WORKFLOW.md)
+- [Modular content authoring](MODULAR_CONTENT_AUTHORING.md)
 - [Asset authoring templates](ASSET_AUTHORING_TEMPLATES.md)
 - [Asset pipeline diagnostics](ASSET_PIPELINE_DIAGNOSTICS.md)
 - [Asset inspector / devtools](ASSET_INSPECTOR_DEVTOOLS.md)
