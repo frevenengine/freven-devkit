@@ -27,7 +27,7 @@ for debugging.
 | --- | --- | --- |
 | Engine/runtime | renderer implementation, asset loading, material registry resolution, fallback rendering, generated renderer/cache output, diagnostics plumbing | Vanilla block library, Vanilla visual style, mod-authored schemas, stable author namespaces |
 | SDK | public schemas, stable `namespace:path` keys, guest APIs, material/model/visual/effect contract vocabulary | renderer slots, Bevy/wgpu handles, Vanilla content, product-specific style |
-| DevKit / Boot | validation commands, inspectors, templates, packaging, author-facing diagnostics, resolved load-plan explanation | first-party content policy, renderer implementation, hidden gameplay defaults |
+| DevKit / Boot | validation commands, inspectors, templates, packaging, author-facing diagnostics, resolved load-plan explanation, content compile command surface | first-party content policy, renderer implementation, hidden gameplay defaults, engine-global Vanilla schema |
 | Vanilla | first-party blocks, tags, materials, textures, visual style, default providers, reference gameplay integration | engine/platform behavior, mandatory base for all games, SDK schemas |
 | Standalone product | product identity, bundled default experience, product-owned content/style/providers/config | implicit dependency on Vanilla, reuse of shipped proof experience as authoring contract |
 | Mod | runtime behavior, providers, config schema, package identity, declared content/assets | unrestricted engine access, silent ownership of another namespace |
@@ -223,6 +223,7 @@ If any answer is no, the feature is probably crossing an ownership boundary.
 - [Project templates](PROJECT_TEMPLATES.md)
 - [Data/content asset workflow](DATA_CONTENT_ASSET_WORKFLOW.md)
 - [Asset authoring templates](ASSET_AUTHORING_TEMPLATES.md)
+- [Content authoring profiles](CONTENT_AUTHORING_PROFILES.md)
 - [Asset pipeline diagnostics](ASSET_PIPELINE_DIAGNOSTICS.md)
 - [Asset inspector / devtools](ASSET_INSPECTOR_DEVTOOLS.md)
 - [Asset/content hot reload](ASSET_CONTENT_HOT_RELOAD.md)

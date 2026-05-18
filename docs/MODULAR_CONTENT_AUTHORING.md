@@ -80,6 +80,8 @@ Split into modular files when:
 Both forms expand into the same semantic content model. The runtime should not
 expose include files as ids, renderer slots, atlas pages, or cache paths.
 
+For game-specific high-level source formats, use [Content authoring profiles](CONTENT_AUTHORING_PROFILES.md). A profile may compile friendlier source such as Vanilla blocktypes/worldproperties into the same canonical graph, while modular manifests remain the low-level canonical source format.
+
 ## Include rules
 
 Includes are explicit ordered paths, not filesystem traversal.

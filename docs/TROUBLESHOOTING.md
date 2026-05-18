@@ -94,6 +94,30 @@ Common examples:
   fails, run `freven_boot content-assets check` first because the problem is
   now in the content/assets graph, not provider declaration resolution.
 
+## Content authoring profile compile fails
+
+If `freven_boot content compile` reports an unknown or unsupported profile, check
+which authoring layer you intended to use.
+
+Use the canonical passthrough profile for current low-level manifests:
+
+    ./freven_boot content compile --instance <instance> --experience <experience_id> --profile freven.core:canonical_manifest_v1 --explain
+
+Use a game-owned profile only when the selected game or template documents it.
+For future Vanilla blocktype/worldproperty authoring, the intended profile id is:
+
+    freven.vanilla:blocktypes_v1
+
+If the Vanilla profile is reported as unsupported, that means the schema is
+documented but the compiler is not available in the current DevKit build. Use
+the current canonical manifest workflow until the profile compiler lands.
+
+After compile/explain, validate the generated or existing canonical graph:
+
+    ./freven_boot content-assets check --instance <instance> --experience <experience_id>
+
+See [Content authoring profiles](CONTENT_AUTHORING_PROFILES.md).
+
 ## Modular content manifest include fails
 
 If a content/assets command reports a missing include, invalid include path,

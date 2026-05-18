@@ -78,6 +78,8 @@ The root manifest is an explicit index:
 Do not use directory scanning, generated cache, or renderer/internal ids as
 authoring template source. See [Modular content authoring](MODULAR_CONTENT_AUTHORING.md).
 
+When a selected game provides a higher-level authoring profile, template docs should name the profile id and explain the `freven_boot content compile` step. For Vanilla-style block authoring, the intended profile is `freven.vanilla:blocktypes_v1`; low-level visual templates may continue to use `freven.core:canonical_manifest_v1` directly. See [Content authoring profiles](CONTENT_AUTHORING_PROFILES.md).
+
 ## Use a template
 
 Copy a template directory into an instance `experiences/` directory, then run:

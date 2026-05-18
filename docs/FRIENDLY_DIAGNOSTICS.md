@@ -24,6 +24,7 @@ Current Boot diagnostics include friendly wrappers for:
 | Provider default mismatch | `providers check/list/explain` | `[defaults]` / `[layers.defaults]` provider keys |
 | Material Registry bridge/content graph | `providers check`, then `content-assets check` | visual content/material declarations |
 | Content/assets graph failure | `content-assets check/explain/inspect/watch/update-sha` | `content.manifest`, included content source files, texture/material/model/effect declarations and files |
+| Authoring profile compile failure | `content compile --explain`, then `content-assets check` | game-owned source files such as blocktypes/worldproperties/shapes and generated canonical declarations |
 
 The Boot-side implementation landed in frevenengine/freven-boot#91.
 
@@ -166,6 +167,7 @@ Use diagnostics to fix the owning source:
 ## Related docs
 
 - [Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md)
+- [Content authoring profiles](CONTENT_AUTHORING_PROFILES.md)
 
 - [Getting started](GETTING_STARTED.md)
 - [First Wasm mod](FIRST_WASM_MOD.md)
