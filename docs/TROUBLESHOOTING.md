@@ -104,11 +104,11 @@ Use the canonical passthrough profile for current low-level manifests:
     ./freven_boot content compile --instance <instance> --experience <experience_id> --profile freven.core:canonical_manifest_v1 --explain
 
 Use a game-owned profile only when the selected game or template documents it.
-For future Vanilla blocktype/worldproperty authoring, the intended profile id is:
+For Vanilla blocktype/worldproperty authoring, the profile id is:
 
     freven.vanilla:blocktypes_v1
 
-If the Vanilla profile is reported as unsupported, that means the schema is
+If the Vanilla profile is reported as unsupported, check that the selected DevKit/Boot build includes the Vanilla profile compiler. The schema is
 documented but the compiler is not available in the current DevKit build. Use
 the current canonical manifest workflow until the profile compiler lands.
 
@@ -229,3 +229,19 @@ Check:
 - generated visuals reference existing models and materials.
 
 See [Content family authoring](CONTENT_FAMILY_AUTHORING.md).
+
+## Vanilla blocktype compile generated the wrong collision or selection
+
+Vanilla visual model geometry and runtime shape semantics are separate.
+
+If a block looks correct but collision, selection, side solidity, or occlusion is
+wrong, edit the shape source fields used by `freven.vanilla:blocktypes_v1`:
+
+    occludes
+    side_solid
+    collision_boxes
+    selection_boxes
+
+Do not fix gameplay shape by changing renderer-only model `elements`.
+
+See [Vanilla blocktype modding](VANILLA_BLOCKTYPE_MODDING.md).
