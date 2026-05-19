@@ -92,7 +92,7 @@ Texture hash maintenance remains:
 
 ## Vanilla profile
 
-The intended Vanilla profile id is:
+The Vanilla profile id is:
 
     freven.vanilla:blocktypes_v1
 
@@ -137,9 +137,8 @@ That means:
 
 - `content/blocktypes/*.toml` in current Vanilla are semantic canonical source
   files;
-- future `freven.vanilla:blocktypes_v1` source may become higher level;
-- `freven_boot content compile --profile freven.vanilla:blocktypes_v1` is the
-  intended compiler bridge once the Vanilla compiler lands;
+- `freven.vanilla:blocktypes_v1` source is the high-level Vanilla blocktype path;
+- `freven_boot content compile --profile freven.vanilla:blocktypes_v1` compiles it into canonical generated output;
 - the engine should still only see the canonical content graph.
 
 ## Choosing the right layer
@@ -206,8 +205,8 @@ Example:
 
 Example unsupported profile:
 
-    error: content compile profile 'freven.vanilla:blocktypes_v1' is declared but not implemented yet
-    fix: use freven.core:canonical_manifest_v1 for current canonical manifests, or wait for the Vanilla profile compiler
+    error: duplicate generated key 'freven.vanilla:stone'
+    fix: rename one source `code` or generated target so each canonical key has one owner
 
 ## Relationship to templates
 
@@ -232,3 +231,4 @@ contract and point to the packaged DevKit/Boot template location.
 - [Project templates](PROJECT_TEMPLATES.md)
 - [Engine vs Vanilla ownership](ENGINE_VANILLA_OWNERSHIP.md)
 - [Troubleshooting](TROUBLESHOOTING.md)
+- [Vanilla blocktype modding](VANILLA_BLOCKTYPE_MODDING.md)

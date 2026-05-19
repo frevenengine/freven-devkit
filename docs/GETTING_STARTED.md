@@ -154,3 +154,5 @@ On Windows, use `freven_boot.exe` with the same `providers` subcommands.
 
 See [Provider selection authoring](PROVIDER_AUTHORING.md) for the full provider
 key contract and side-aware validation rules.
+
+For Vanilla-style blocks, see [Vanilla blocktype modding](VANILLA_BLOCKTYPE_MODDING.md).

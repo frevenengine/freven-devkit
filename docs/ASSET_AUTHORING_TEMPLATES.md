@@ -52,7 +52,7 @@ The script verifies:
 
 ## Modular template layout
 
-For larger templates and future Vanilla-style visual packs, use this layout:
+For larger templates and Vanilla-style visual packs, use this layout:
 
     content.manifest
     content/
@@ -78,7 +78,13 @@ The root manifest is an explicit index:
 Do not use directory scanning, generated cache, or renderer/internal ids as
 authoring template source. See [Modular content authoring](MODULAR_CONTENT_AUTHORING.md).
 
-When a selected game provides a higher-level authoring profile, template docs should name the profile id and explain the `freven_boot content compile` step. For Vanilla-style block authoring, the intended profile is `freven.vanilla:blocktypes_v1`; low-level visual templates may continue to use `freven.core:canonical_manifest_v1` directly. See [Content authoring profiles](CONTENT_AUTHORING_PROFILES.md).
+When a selected game provides a higher-level authoring profile, template docs should name the profile id and explain the `freven_boot content compile` step. For Vanilla-style block authoring, the profile is `freven.vanilla:blocktypes_v1`; low-level visual templates may continue to use `freven.core:canonical_manifest_v1` directly. See [Content authoring profiles](CONTENT_AUTHORING_PROFILES.md).
+
+## Vanilla blocktype template guidance
+
+Do not fake a checked-in Vanilla blocktype template in this repository unless the template catalog itself exists here. Packaged DevKit/Boot templates that target Vanilla-style blocks should document the profile id `freven.vanilla:blocktypes_v1`, include source files under `content/blocktypes/` and `content/shapes/`, and tell authors to run `freven_boot content compile` before `content-assets check`.
+
+For the copyable workflow, see [Vanilla blocktype modding](VANILLA_BLOCKTYPE_MODDING.md).
 
 ## Use a template
 
